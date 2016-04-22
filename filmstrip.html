@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+	#filmstrip{
+	  position: absolute;
+	  left:0;
+	  width: 2400px; /* do math based on how many videos you have */
+		}
+
+	#filmstrip::before, #filmstrip::after{
+	    content: " ";
+	    display: table;
+	}
+
+	#filmstrip::after {
+	    clear: both;
+	}
+
+	#filmstrip iframe{
+	  float: left;
+	  height: 180px;
+	  width: 320px;
+	}
+
+	.street_interview{
+	 	transition: all .2s ease-in-out;
+	}
+    .street_interview:hover { 
+    	transform: scale(1.2);
+    }
+
+    #subtitles{
+      position: relative;
+      top: 300px;
+    	font-size: 100px;
+    }
+	
+</style>
+<script src="js/jquery.min.js"></script>
+
+<script src="//cdn.rawgit.com/jrue/Vimeo-jQuery-API/master/dist/jquery.vimeo.api.min.js" integrity="sha384-5HEFbHMdJ1B0NgJ2dK6/jCaTT4DoL3ucsGIIRSyYEAm8KvHrOm6zpb95OCifXv0m" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+  var subtitles_for_video_1 = [
+    {time:3, caption:"In physics, “like charges repel each other while opposite charges attract,” right?"},
+    {time:5, caption:"Something here what they are saying1."},
+    {time:10, caption:"Something here what they are saying2."},
+    {time:35, caption:"Something here what they are saying3."}
+  ];
+ 
+
+  var subtitles_for_video_2 = [
+    {time:4.3, caption:"Something here what they are saying."},
+    {time:5.1, caption:"Something here what they are saying."},
+    {time:8.3, caption:"Something here what they are saying."},
+    {time:41.4, caption:"Something here what they are saying."}
+  ];
+
+  var questions = [
+  "what do you think of homosexuality?",
+  "what do you think of homosexuality2?"
+
+  ];
+  
+   $("#video1")
+      .on("playProgress", function(e, data){
+        for(var i=0; i < subtitles_for_video_1.length; i++){
+          if(data.seconds > subtitles_for_video_1[subtitles_for_video_1.length - 1].time){
+            $("#subtitles").text(subtitles_for_video_1[subtitles_for_video_1.length - 1].caption);
+          } else {
+            if(data.seconds > subtitles_for_video_1[i].time && data.seconds < subtitles_for_video_1[i + 1].time){
+              $("#subtitles").text(subtitles_for_video_1[i].caption);
+            }
+          }
+        }
+      });
+  
+  $("#question1").on("click", function(){
+    $("#filmstrip").stop().animate({"left":0}, {queue:false, duration:600});
+    /* Needs vimeo plugin to work */
+
+    $("#question_title").text(questions[0])
+
+    $("#video1")
+      .vimeo("play");
+
+  });
+
+  $("#question2").on("click", function(){
+    $("#filmstrip").stop().animate({"left":-400}, {queue:false, duration:600});
+    /* Needs vimeo plugin to work */
+    $("#video2")
+      .vimeo("play")
+      .on("playProgress", function(e, data){
+        for(var i=0; i < subtitles_for_video_2.length; i++){
+          if(data.seconds > subtitles_for_video_2[subtitles_for_video_2.length - 1].time){
+            $("#subtitles").text(subtitles_for_video_2[subtitles_for_video_2.length - 1].caption);
+          } else {
+            if(data.seconds > subtitles_for_video_2[i].time && data.seconds < subtitles_for_video_2[i + 1].time){
+              $("#subtitles").text(subtitles_for_video_2[i].caption);
+            }
+          }
+        }
+      });
+  });
+
+})
+</script>
+<body style="height:10000px;">
+		<div id="filmstrip">
+			<div class="button">
+				<div id="question1"> lalalalala</div>
+				<div id="question2"> lalalalala</div>
+			</div>
+      <div class="question_title"></div>
+
+
+			<!-- <video width="640" height="360" controls>
+    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
+			</video>
+			<video width="640" height="360" controls>
+    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
+			</video>
+			<video width="640" height="360" controls>
+    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
+			</video>
+			<video width="640" height="360" controls>
+    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
+			</video>
+			<video width="640" height="360" controls>
+    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
+			</video>
+			<video width="640" height="360" controls>
+    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
+			</video>
+			<video width="640" height="360" controls>
+    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
+			</video> -->
+<!-- 		    <iframe class="street_interview" id="#question1" src="./assets/footage/STREETINTERVIEWQ2.mp4" width="640px" height="360px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen &autoplay=false></iframe> -->
+		    <iframe class="streetinterview" id= "video1" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		</div>
+
+      <div id="subtitles"></div>
+
+</body>

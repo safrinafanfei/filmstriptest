@@ -35,7 +35,24 @@
     	font-size: 30px;
       text-align: center;
     }
-	
+
+    .highlight{
+      font-size: 30px;
+      color:#8F5332;
+    }
+
+    ul#keyword {
+    padding: 0;
+}
+
+    ul#keyword li {
+        display: inline;
+        padding: 10px 20px;
+
+    }
+
+
+
 </style>
 <script src="js/jquery.min.js"></script>
 
@@ -45,40 +62,39 @@ $(document).ready(function(){
   var subtitles_for_video_1 = [
     {time:0, caption:"In physics, “like charges repel each other while opposite charges attract,” right?"},
     {time:5.05, caption:" So why would anyone want to engage in homosexual activity?"},
-    {time:6.19, caption:"Are they out of their minds? Are they psycho? "},
-    {time:9.12, caption:" Isn’t homosexuality inherited? "},
+    {time:6.19, caption:"Are they out of their minds? Are they <span class=\"highlight\">psycho</span>? "},
+    {time:9.12, caption:" Isn’t homosexuality <span class=\"highlight\">inherited?</span> "},
     {time:12.27, caption:" It’s not an acquired characteristic but an innate trait."},
-    {time:15.09, caption:" I think this is just a normal sexual orientation."},
+    {time:15.09, caption:" I think this is just a <span class=\"highlight\">normal</span> sexual orientation."},
     {time:18.24, caption:" I don’t have any issue with homosexuality. "},
-    {time:20.06, caption:" It’s just like, ‘I like drinking beer’ and he likes drinking some other beverage. "},
+    {time:20.06, caption:" It’s just like, ‘I like drinking beer’ and he likes drinking some other beverage."},
     {time:23.06, caption:" It’s just like that, very simple."},
     {time:25.04, caption:" I think it’s okay."},
-{time:26.09, caption:" If they are good-looking, they will be pleasing to me. "},
-    {time:29.01, caption:" But if they don’t, they nauseate me. "},
+    {time:26.09, caption:" If they are <span class=\"highlight\">good-looking</span>, they will be pleasing to me. "},
+    {time:29.01, caption:" But if they don’t, they <span class=\"highlight\">nauseate me.</span> "},
     {time:33.24, caption:" From the perspective of human relationships,"},
     {time:38.02, caption:" It’s okay if they live together. "},
     {time:42.16, caption:" But from the perspective of human reproduction,"},
     {time:46.08, caption:" it’s not gonna work. "},
     {time:47.07, caption:" It’s absolutely bad!"},
     {time:48.25, caption:" Homosexuality won’t do any good for society. "},
-{time:50.07, caption:" Two men living together? "},
-    {time:51.21, caption:" Who does the housework? "},
+    {time:50.07, caption:" Two men living together? "},
+    {time:51.21, caption:" Who does the <span class=\"highlight\">housework?</span> "},
     {time:53.07, caption:" Men certainly can’t do housework."},
     {time:54.19, caption:" Women should do the housework. "},
     {time:56.08, caption:" Then why would two men bother to get married? "},
     {time:57.48, caption:" The purpose for getting married is to make a family."},
     {time:59.27, caption:" Families with one man are already terrible. "},
-{time:63.01, caption:" Not to mention a family which is has two men."},
+    {time:63.01, caption:" Not to mention a family which is has two men."},
     {time:64, caption:"If it exists, it has a reason."},
     {time:65.24, caption:" I don’t discriminate them"},
     {time:66.25, caption:" But I won’t try to be gay myself. "},
-{time:69.16, caption:" I can’t stand two men being together. "},
+    {time:69.16, caption:" I can’t stand two men being together. "},
     {time:73.03, caption:" Two dudes making out? "},
     {time:76.13, caption:" I don’t think it’s appropriate. "},
     {time:78.21, caption:" Everyone has his own morals and ethics. "},
     {time:82.04, caption:" I think it’s his own choice. "},
   ];
-
  
 
   var subtitles_for_video_2 = [
@@ -90,27 +106,56 @@ $(document).ready(function(){
 
   var questions = [
   "what do you think of homosexuality?",
-  "what do you think of homosexuality2?"
+  "what do you think of homosexuality?"
   ];
   
    $("#video1")
       .on("playProgress", function(e, data){
         for(var i=0; i < subtitles_for_video_1.length; i++){
           if(data.seconds > subtitles_for_video_1[subtitles_for_video_1.length - 1].time){
-            $("#subtitles").text(subtitles_for_video_1[subtitles_for_video_1.length - 1].caption);
+            $("#subtitles").html(subtitles_for_video_1[subtitles_for_video_1.length - 1].caption);
           } else {
             if(data.seconds > subtitles_for_video_1[i].time && data.seconds < subtitles_for_video_1[i + 1].time){
-              $("#subtitles").text(subtitles_for_video_1[i].caption);
+              $("#subtitles").html(subtitles_for_video_1[i].caption);
             }
           }
         }
       });
+
+    $("#video2")
+      .on("playProgress", function(e, data){
+        for(var i=0; i < subtitles_for_video_2.length; i++){
+          if(data.seconds > subtitles_for_video_2[subtitles_for_video_2.length - 1].time){
+            $("#subtitles").html(subtitles_for_video_2[subtitles_for_video_2.length - 1].caption);
+          } else {
+            if(data.seconds > subtitles_for_video_2[i].time && data.seconds < subtitles_for_video_2[i + 1].time){
+              $("#subtitles").html(subtitles_for_video_2[i].caption);
+            }
+          }
+        }
+      });
+
+    $("#video3")
+      .on("playProgress", function(e, data){
+        for(var i=0; i < subtitles_for_video_3.length; i++){
+          if(data.seconds > subtitles_for_video_3[subtitles_for_video_3.length - 1].time){
+            $("#subtitles").html(subtitles_for_video_3[subtitles_for_video_3.length - 1].caption);
+          } else {
+            if(data.seconds > subtitles_for_video_3[i].time && data.seconds < subtitles_for_video_3[i + 1].time){
+              $("#subtitles").html(subtitles_for_video_3[i].caption);
+            }
+          }
+        }
+      });
+
+
+
   
   $("#question1").on("click", function(){
     $("#filmstrip").stop().animate({"left":0}, {queue:false, duration:600});
     /* Needs vimeo plugin to work */
 
-    $("#question_title").text(questions[0])
+    $("#question_title").text(questions[0]);
 
     $("#video1")
       .vimeo("play");
@@ -120,61 +165,52 @@ $(document).ready(function(){
   $("#question2").on("click", function(){
     $("#filmstrip").stop().animate({"left":-400}, {queue:false, duration:600});
     /* Needs vimeo plugin to work */
+    $("#question_title").text(questions[1]);
     $("#video2")
-      .vimeo("play")
-      .on("playProgress", function(e, data){
-        for(var i=0; i < subtitles_for_video_2.length; i++){
-          if(data.seconds > subtitles_for_video_2[subtitles_for_video_2.length - 1].time){
-            $("#subtitles").text(subtitles_for_video_2[subtitles_for_video_2.length - 1].caption);
-          } else {
-            if(data.seconds > subtitles_for_video_2[i].time && data.seconds < subtitles_for_video_2[i + 1].time){
-              $("#subtitles").text(subtitles_for_video_2[i].caption);
-            }
-          }
-        }
-      });
+    .vimeo("play");
   });
 
 })
 </script>
 <body style="height:10000px;">
+    <div class="container-fluid content">
+        <!--         <div class="row" data-0="opacity:1; transform:translate3d(0px,0px,0px);" data--1000-bottom="transform:translate3d(0px,1000px,0px); opacity:0;"> -->
+        <div class="row" id="header" data-0="opacity:1" data--200-bottom="opacity:0;">
+            <div class="main-sketch col-sm-7">
+                <img class="img-responsive" img-responsive src="assets/images/landing_page.png">
+            </div>
+            <!--  <div class="scroll col-sm-1">
+                    <h5>Scroll</h5>
+                </div> -->
+            <div class="col-sm-5">
+                <div class="main-title">
+                    <h2>On the Struggle</h2>
+                    <h1>The Chinese Closet and HIV</h1>
+                    <h5>By Fan Fei, Jieqian Zhang and Tailai Zhou </h5>
+                </div>
+            </div>
+
+          <div id="question_title"></div>
+
+          <ul id="keyword">
+                <li id="question1">Homosexuality</li>
+                <li id="question2">HIV</li>
+                <li id="question3">KEYWORD3</li>
+                <li id="question4">KEYWORD4</li>
+                <li id="question5">KEYWORD5</li>
+                <li id="question6">KEYWORD6</li>
+                <li id="question7">KEYWORD7</li>
+          </ul>
+
 		<div id="filmstrip">
-			<div class="button">
-				<div id="question1"> lalalalala</div>
-				<div id="question2"> lalalalala</div>
-			</div>
-      <div class="question_title"></div>
-
-
-			<!-- <video width="640" height="360" controls>
-    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
-			</video>
-			<video width="640" height="360" controls>
-    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
-			</video>
-			<video width="640" height="360" controls>
-    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
-			</video>
-			<video width="640" height="360" controls>
-    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
-			</video>
-			<video width="640" height="360" controls>
-    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
-			</video>
-			<video width="640" height="360" controls>
-    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
-			</video>
-			<video width="640" height="360" controls>
-    			<source src="./assets/footage/STREETINTERVIEWQ2.mp4" type="video/mp4">
-			</video> -->
-<!-- 		    <iframe class="street_interview" id="#question1" src="./assets/footage/STREETINTERVIEWQ2.mp4" width="640px" height="360px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen &autoplay=false></iframe> -->
+			
 		    <iframe class="streetinterview" id= "video1" src="https://player.vimeo.com/video/163781314" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id= "video2"src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id= "video3"src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id= "video4"src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id= "video5"src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id= "video6"src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id="video7" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 		</div>
 
       <div id="subtitles"></div>

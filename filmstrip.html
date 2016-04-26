@@ -104,9 +104,45 @@ $(document).ready(function(){
     {time:41.4, caption:"Something here what they are saying."}
   ];
 
+  var subtitles_for_video_3 = [
+    {time:4.3, caption:"Something here what they are saying."},
+    {time:5.1, caption:"Something here what they are saying."},
+    {time:8.3, caption:"Something here what they are saying."},
+    {time:41.4, caption:"Something here what they are saying."}
+  ];
+
+  var subtitles_for_video_4 = [
+    {time:4.3, caption:"Something here what they are saying."},
+    {time:5.1, caption:"Something here what they are saying."},
+    {time:8.3, caption:"Something here what they are saying."},
+    {time:41.4, caption:"Something here what they are saying."}
+  ];
+
+  var subtitles_for_video_5 = [
+    {time:4.3, caption:"Something here what they are saying."},
+    {time:5.1, caption:"Something here what they are saying."},
+    {time:8.3, caption:"Something here what they are saying."},
+    {time:41.4, caption:"Something here what they are saying."}
+  ];
+
+  var subtitles_for_video_6 = [
+    {time:4.3, caption:"Something here what they are saying."},
+    {time:5.1, caption:"Something here what they are saying."},
+    {time:8.3, caption:"Something here what they are saying."},
+    {time:41.4, caption:"Something here what they are saying."}
+  ];
+
+  var subtitles_for_video_7 = [
+    {time:4.3, caption:"Something here what they are saying."},
+    {time:5.1, caption:"Something here what they are saying."},
+    {time:8.3, caption:"Something here what they are saying."},
+    {time:41.4, caption:"Something here what they are saying."}
+  ];
+
+
   var questions = [
   "what do you think of homosexuality?",
-  "what do you think of homosexuality?"
+  "gay & homosesuality?"
   ];
   
    $("#video1")
@@ -148,27 +184,138 @@ $(document).ready(function(){
         }
       });
 
+    $("#video4")
+      .on("playProgress", function(e, data){
+        for(var i=0; i < subtitles_for_video_4.length; i++){
+          if(data.seconds > subtitles_for_video_4[subtitles_for_video_4.length - 1].time){
+            $("#subtitles").html(subtitles_for_video_4[subtitles_for_video_4.length - 1].caption);
+          } else {
+            if(data.seconds > subtitles_for_video_4[i].time && data.seconds < subtitles_for_video_4[i + 1].time){
+              $("#subtitles").html(subtitles_for_video_4[i].caption);
+            }
+          }
+        }
+      });
+
+    $("#video5")
+      .on("playProgress", function(e, data){
+        for(var i=0; i < subtitles_for_video_5.length; i++){
+          if(data.seconds > subtitles_for_video_5[subtitles_for_video_5.length - 1].time){
+            $("#subtitles").html(subtitles_for_video_5[subtitles_for_video_5.length - 1].caption);
+          } else {
+            if(data.seconds > subtitles_for_video_5[i].time && data.seconds < subtitles_for_video_5[i + 1].time){
+              $("#subtitles").html(subtitles_for_video_5[i].caption);
+            }
+          }
+        }
+      });
+
+    $("#video6")
+      .on("playProgress", function(e, data){
+        for(var i=0; i < subtitles_for_video_6.length; i++){
+          if(data.seconds > subtitles_for_video_6[subtitles_for_video_6.length - 1].time){
+            $("#subtitles").html(subtitles_for_video_6[subtitles_for_video_6.length - 1].caption);
+          } else {
+            if(data.seconds > subtitles_for_video_6[i].time && data.seconds < subtitles_for_video_6[i + 1].time){
+              $("#subtitles").html(subtitles_for_video_6[i].caption);
+            }
+          }
+        }
+      });
+
+    $("#video7")
+      .on("playProgress", function(e, data){
+        for(var i=0; i < subtitles_for_video_7.length; i++){
+          if(data.seconds > subtitles_for_video_7[subtitles_for_video_7.length - 1].time){
+            $("#subtitles").html(subtitles_for_video_7[subtitles_for_video_7.length - 1].caption);
+          } else {
+            if(data.seconds > subtitles_for_video_7[i].time && data.seconds < subtitles_for_video_7[i + 1].time){
+              $("#subtitles").html(subtitles_for_video_7[i].caption);
+            }
+          }
+        }
+      });
 
 
   
   $("#question1").on("click", function(){
     $("#filmstrip").stop().animate({"left":0}, {queue:false, duration:600});
     /* Needs vimeo plugin to work */
-
+    $("#question1").css('color','#8F5332');
     $("#question_title").text(questions[0]);
-
     $("#video1")
       .vimeo("play");
-
+    $(".streetinterview").not("#video1")
+      .vimeo("pause");
   });
 
   $("#question2").on("click", function(){
-    $("#filmstrip").stop().animate({"left":-400}, {queue:false, duration:600});
+    $("#filmstrip").stop().animate({"left":-320}, {queue:false, duration:600});
     /* Needs vimeo plugin to work */
     $("#question_title").text(questions[1]);
+    $("#question2").css('color','#8F5332');
     $("#video2")
-    .vimeo("play");
+      .vimeo("play");
+    $(".streetinterview").not("#video2")
+      .vimeo("pause");
   });
+
+
+    $("#question3").on("click", function(){
+    $("#filmstrip").stop().animate({"left":-640}, {queue:false, duration:600});
+    /* Needs vimeo plugin to work */
+    $("#question_title").text(questions[2]);
+    $("#question3").css('color','#8F5332');
+    $("#video3")
+    .vimeo("play");
+    $(".streetinterview").not("#video3")
+      .vimeo("pause");
+  });
+
+    $("#question4").on("click", function(){
+    $("#filmstrip").stop().animate({"left":-960}, {queue:false, duration:600});
+    /* Needs vimeo plugin to work */
+    $("#question_title").text(questions[3]);
+    $("#question4").css('color','#8F5332');
+    $("#video4")
+    .vimeo("play");
+    $(".streetinterview").not("#video4")
+      .vimeo("pause");
+  });
+
+    $("#question5").on("click", function(){
+    $("#filmstrip").stop().animate({"left":-1280}, {queue:false, duration:600});
+    /* Needs vimeo plugin to work */
+    $("#question_title").text(questions[4]);
+    $("#question5").css('color','#8F5332');
+    $("#video5")
+    .vimeo("play");
+    $(".streetinterview").not("#video5")
+      .vimeo("pause");
+  });
+
+    $("#question6").on("click", function(){
+    $("#filmstrip").stop().animate({"left":-1600}, {queue:false, duration:600});
+    /* Needs vimeo plugin to work */
+    $("#question_title").text(questions[5]);
+    $("#question6").css('color','#8F5332');
+    $("#video6")
+    .vimeo("play");
+    $(".streetinterview").not("#video6")
+      .vimeo("pause");
+  });
+
+    $("#question7").on("click", function(){
+    $("#filmstrip").stop().animate({"left":-1960}, {queue:false, duration:600});
+    /* Needs vimeo plugin to work */
+    $("#question_title").text(questions[6]);
+    $("#question7").css('color','#8F5332');
+    $("#video7")
+    .vimeo("play");
+    $(".streetinterview").not("#video7")
+      .vimeo("pause");
+  });
+
 
 })
 </script>
@@ -205,11 +352,11 @@ $(document).ready(function(){
 		<div id="filmstrip">
 			
 		    <iframe class="streetinterview" id= "video1" src="https://player.vimeo.com/video/163781314" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" id= "video2"src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" id= "video3"src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" id= "video4"src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" id= "video5"src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		    <iframe class="streetinterview" id= "video6"src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id= "video2" src="https://player.vimeo.com/video/163781314" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id= "video3" src="https://player.vimeo.com/video/163781314" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id= "video4" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id= "video5" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		    <iframe class="streetinterview" id= "video6" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 		    <iframe class="streetinterview" id="video7" src="https://player.vimeo.com/video/156802238" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 		</div>
 

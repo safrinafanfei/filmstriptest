@@ -235,17 +235,42 @@ $(document).ready(function(){
         }
       });
 
-for (var questionNumber = 1; questionNumber <= 7; questionNumber++) {
-  var registerVideoClickCallback = function(i) {
-    $("#question" + i).on("click", function() {
-      videoClickCallback(i);
-    })
-  };
-  registerVideoClickCallback(questionNumber);    
-}
+
+  
+  $("#question1").on("click", function(){
+    $("#filmstrip").stop().animate({"left":0}, {queue:false, duration:600});
+    /* Needs vimeo plugin to work */
+    $("#question1").css('color','#8F5332');
+    $("#question_title").text(questions[0]);
+    $("#video1")
+      .vimeo("play");
+    $(".streetinterview").not("#video1")
+      .vimeo("pause");
+  });
+
+  for (var questionNumber = 1; questionNumber <= 7; questionNumber++) {
+    var registerCall = function(i) {
+      $("#question" + i).on("click", function() {
+        videoClickCallback(i);
+      })
+    };
+    registerCall(questionNumber);    
+  }
 
 function videoClickCallback(videoSequenceId) {
+  if(videoSequenceId == 5){
+    $("#filmstrip").stop().animate({"left":-320}, {queue:false, duration:600});
+  }
+  else if(videoSequenceId == 6){
+    $("#filmstrip").stop().animate({"left":-640}, {queue:false, duration:600});
+  }
+
+  else if(videoSequenceId == 7){
+    $("#filmstrip").stop().animate({"left":-960}, {queue:false, duration:600});
+  }
+  else {
     $("#filmstrip").stop().animate({"left":0}, {queue:false, duration:600});
+  }
     /* Needs vimeo plugin to work */
     $("#question_title").text(questions[videoSequenceId - 1]);
     $("#question" + videoSequenceId).css('color','#8F5332');
@@ -255,8 +280,9 @@ function videoClickCallback(videoSequenceId) {
     });
     $("#video" + videoSequenceId).vimeo("play");
 }
-
+  
 })
+
 </script>
 <body style="height:10000px;">
     <div class="container-fluid content">

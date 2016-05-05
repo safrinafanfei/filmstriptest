@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Simple Effects for Drop-Down Lists" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="css/style4.css" />
+        <script src="js/modernizr.custom.63321.js"></script>
+    </head>
 <style>
 
   #question_title{
@@ -10,14 +19,21 @@
 
   }
 
-	iframe{
-    margin-top: 50px;
-	  position: absolute;
-      height: 180px;
-      width: 320px;
-/*	  left:0;
-*/	/*  width: 2400px;*/ /* do math based on how many videos you have */
-		}
+  .container{
+    width:'500px';
+    margin: auto;
+    text-align:center;
+  }
+
+	#video-container{
+        margin: 0 auto;
+    }
+
+    .iframe-holder{
+      height: 270px;
+      width: 480px;
+      margin:0 auto;
+	}
 /*
 	#filmstrip::before, #filmstrip::after{
 	    content: " ";
@@ -59,7 +75,9 @@
 </style>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.vimeo.api.min.js"></script>
+<script type="text/javascript" src="js/jquery.dropdown.js"></script>
 <script>
+
 
 
  var subtitles_for_video = [[
@@ -246,10 +264,14 @@
   }
   
 
+
 $(document).ready(function(){
+
+    $('#cd-dropdown').dropdown();
+
     registerSubtitles(1);
-    $("select").change(function(e){
-        var videoTheme = $(this).val();
+    $('.cd-dropdown li').click(function(){
+        var videoTheme = $(this).data('value');
         var videoSequence = videoSequences[videoTheme];
         $(".iframe-holder").attr("src",videos[videoTheme]);
         $(".iframe-holder").attr("id", "video" + videoSequence);
@@ -271,6 +293,8 @@ function registerSubtitles(videoSequenceId){
     });
 }
 
+
+
 </script>
 <body style="height:10000px;">
     <div class="container-fluid content">
@@ -279,16 +303,21 @@ function registerSubtitles(videoSequenceId){
 
           <div id="question_title">We asked people on the street to talk about the following topics.</div>
           
-          <select id="select">
-              <option value="homosexuality">Homosexuality</option>
-              <option value="love">Love? Brotherhood?</option>
-              <option value="transmission">HIV Transmission</option>
-              <option value="correction">HIV &amp; Gay</option>
-              <option value="cost">Treatment Cost</option>
-              <option value="life">Life Expectancy</option>
-          </select>
+          <div class="container">
+            <select id="cd-dropdown" class="video-selector cd-select">
+                    <option value="-1" selected> Pick a topic</option>
+                  <option value="homosexuality">Homosexuality</option>
+                  <option value="love">Love? Brotherhood?</option>
+                  <option value="transmission">HIV Transmission</option>
+                  <option value="correction">HIV &amp; Gay</option>
+                  <option value="cost">Treatment Cost</option>
+                  <option value="life">Life Expectancy</option>
+              </select>
+            </div>
 
-		<iframe class="iframe-holder" id="video1" src="https://player.vimeo.com/video/163781314" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		<div id="video-container">
+            <iframe class="iframe-holder" id="video1" src="https://player.vimeo.com/video/163781314" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
 
       <div id="subtitles"></div>
 

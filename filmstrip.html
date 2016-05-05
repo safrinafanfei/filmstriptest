@@ -15,7 +15,7 @@
     position:relative;
     text-align: center;
     color:#8F5332;
-    font-size: 46px;
+    font-size: 40px;
 
   }
 
@@ -237,14 +237,14 @@
   ];
 
 
-  var questions = [
-      "What do you think of homosexuality?",
-      "Can two gay men really love each other?",
-      "How is HIV transmitted?",
-      "Is there any relationship between HIV and homosexuality?",
-      "How much does it cost to treat HIV?", 
-      "How long can people with HIV live?"
-  ];
+  var questions = {
+      "homosexuality":"What do you think of homosexuality?",
+      "love":"Can two gay men really love each other?",
+      "transmission":"How is HIV transmitted?",
+      "correction":"Is there any relationship between HIV and homosexuality?",
+      "cost":"How much does it cost to treat HIV?", 
+      "life":"How long can people with HIV live?"
+  };
 
   var videos = {
     "homosexuality":"https://player.vimeo.com/video/163781314",
@@ -274,11 +274,15 @@ $(document).ready(function(){
     $('.cd-dropdown li').click(function(){
         var videoTheme = $(this).data('value');
         var videoSequence = videoSequences[videoTheme];
+        var question = questions[videoTheme];
         $(".iframe-holder").attr("src",videos[videoTheme]);
         $(".iframe-holder").attr("id", "video" + videoSequence);
         registerSubtitles(videoSequence);
+        $( "#question_title" ).text( question);
+        })
+    .change()
     });
-});
+
 
 function registerSubtitles(videoSequenceId){
     // Clear the subtitle.
